@@ -14,10 +14,10 @@ export function renderMarkup(result) {
         downloads,
         largeImageURL,
       }) => `
-        <li class="gallery-list__item"><div class="photo-card">
-          <a href="${largeImageURL}" >
-            <img class="gallery__image" src="${webformatURL}" alt="${tags}" loading="lazy" />
-          </a>
+        <li class="gallery-list__item">
+        <a href="${largeImageURL}" >
+        <div class="photo-card">
+          <img class="gallery__image" src="${webformatURL}" alt="${tags}" loading="lazy" />
           <ul class="info">
             <li class="info-list">
               <p class="info-text">Likes
@@ -36,7 +36,9 @@ export function renderMarkup(result) {
               <span class="span">${downloads}</span></p>
             </li>
           </ul>
-        </div></li>`
+        </div>
+        </a>
+        </li>`
     )
     .join('')}</ul>`;
 
