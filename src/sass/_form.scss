@@ -1,0 +1,49 @@
+.header {
+  position: fixed;
+  background: linear-gradient(to left, rgb(64, 68, 179), rgb(234, 21, 216));
+  padding-top: 30px;
+  padding-bottom: 30px;
+  width: 100%;
+  z-index: 3;
+}
+
+.container {
+  position: relative;
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  border: none;
+  border-radius: 5px;
+  padding-right: 30px;
+  outline: none;
+  min-width: 250px;
+  height: 40px;
+}
+
+input:hover,
+input:focus {
+  box-shadow: 0 0 15px 4px rgba(3, 27, 62, 0.782);
+}
+
+.button {
+  position: absolute;
+  border: none;
+  top: 0px;
+  right: 0%;
+  border-radius: 5px;
+  width: 40px;
+  height: 100%;
+  font-size: 13px;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: rgb(151, 151, 206);
+}
