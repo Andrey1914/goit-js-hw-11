@@ -25,20 +25,21 @@ const Lightbox = new SimpleLightbox('.gallery a', {
 });
 
 btnElement.classList.add('hidden');
-
-formElement.addEventListener('submit', getUserValue);
+console.log(formElement);
+formElement.addEventListener('submit', getGallery);
 btnElement.addEventListener('click', onClickMoreImg);
 
-async function getUserValue(event) {
+async function getGallery(event) {
   event.preventDefault();
   galleryElement.innerHTML = '';
+  nameImg = event.currentTarget.elements.searchQuery.value.toLowerCase();
   if (!nameImg) return;
   page = 1;
-
   try {
-    const userValue = await fetchImages(nameImg);
-    const userData = userValue.data;
-    if (!userData.total) {
+    const img = await fetchImages(nameImg);
+    const imgData = img.data;
+    console.log(imgData);
+    if (!imgData.total) {
       return Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );
@@ -46,11 +47,11 @@ async function getUserValue(event) {
 
     textElement.innerHTML = '';
 
-    Notify.success(`Hooray! We found ${userData.totalHits} images.`);
-    renderMarkup(userData.hits);
+    Notify.success(`Hooray! We found ${imgData.totalHits} images.`);
+    renderMarkup(imgData.hits);
 
     btnElement.classList.remove('hidden');
-    noMorePages(userData);
+    noMorePages(imgData);
 
     Lightbox.refresh();
   } catch (error) {
@@ -62,10 +63,10 @@ async function onClickMoreImg() {
   try {
     if (page !== null) {
       page += 1;
-      const userValue = await fetchImages(nameImg);
-      const userData = userValue.data;
-      renderMarkup(userData.hits);
-      noMorePages(userData);
+      const img = await fetchImages(nameImg);
+      const imgData = img.data;
+      renderMarkup(imgData.hits);
+      noMorePages(imgData);
       Lightbox.refresh();
     }
   } catch (error) {
